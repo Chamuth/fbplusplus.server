@@ -1,8 +1,8 @@
-import rateLimit from "express-rate-limit"
 import * as functions from "firebase-functions"
 import * as admin from "firebase-admin"
 import express from "express"
 import cors from "cors"
+import rateLimit from "express-rate-limit"
 
 admin.initializeApp()
 
@@ -22,9 +22,14 @@ app.use(cors({ origin: "*" }))
 
 const profileCollection = store.collection("profile")
 
-app.get("/:id", async (_, res) => {
-  const data = await profileCollection.doc("person1").get()
-  res.json(data)
+app.get("/:id", async (req, res) => {
+  const data = await profileCollection.doc(req.params.id).get()
+
+  const person = data.data() as {
+    faction: string
+  }
+
+  res.json(person)
 })
 
 app.post("/:id", async (req, res) => {
