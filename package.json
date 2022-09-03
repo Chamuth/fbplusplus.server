@@ -1,0 +1,14 @@
+{
+  "name": "facebook.server",
+  "description": "Server for Facebook++",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "firebase emulators:start",
+    "fb:deploy": "firebase deploy"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "express-rate-limit": "^6.5.2"
+  }
+}
